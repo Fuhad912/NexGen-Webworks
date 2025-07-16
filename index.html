@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen WebWorks - Modern Web Development</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#6D28D9',secondary:'#4C1D95'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <!-- tsParticles for animated background -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0d;
+            color: #F4F4F5;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.2) 0%, rgba(10, 10, 13, 0.95) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .typing-animation::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .scale-hover:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #6D28D9;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .max-w-3xl {
+                max-width: 100% !important;
+            }
+            .hero-gradient {
+                min-height: 80vh !important;
+                padding-top: 2rem !important;
+            }
+            #hero-title {
+                font-size: 2rem !important;
+                line-height: 2.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            #hero-subtitle {
+                font-size: 1.1rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            .hero-btn {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 1rem !important;
+            }
+            .glass, .glass-hover {
+                padding: 1.25rem !important;
+            }
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            .project-card {
+                margin-bottom: 1.5rem !important;
+            }
+            section {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+            .contact-bubble {
+                right: 1rem !important;
+                bottom: 1rem !important;
+                padding: 0.75rem 1.25rem !important;
+                font-size: 1rem !important;
+            }
+            .w-16, .h-16 {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            .service-icon {
+                margin-bottom: 0.5rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero-title {
+                font-size: 1.3rem !important;
+                line-height: 1.7rem !important;
+            }
+            #hero-subtitle {
+                font-size: 0.95rem !important;
+            }
+            .hero-btn {
+                font-size: 0.95rem !important;
+                padding: 0.6rem 1.1rem !important;
+            }
+            .glass, .glass-hover {
+                padding: 0.8rem !important;
+            }
+            .contact-bubble {
+                font-size: 0.95rem !important;
+                padding: 0.6rem 1.1rem !important;
+            }
+        }
+
+        /* New Animations */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .rotate-hover:hover {
+            transform: rotate(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hero-gradient::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-icon {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-hover:hover .service-icon {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center bottom;
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-bubble {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-bubble:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="https://i.postimg.cc/m24B7qjV/Nex-Gen-Web-Works-1.jpg" alt="NexGen WebWorks Logo" class="h-10 w-auto">
+            </a>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-gray-200 hover:text-white transition-colors">About</a>
+                <a href="#services" class="nav-link text-gray-200 hover:text-white transition-colors">Services</a>
+                <a href="#work" class="nav-link text-gray-200 hover:text-white transition-colors">Work</a>
+                <a href="#contact" class="nav-link text-gray-200 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer">
+                <i class="ri-menu-line ri-2x text-white"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-4/5 bg-gray-900 z-50 shadow-lg p-6">
+        <div class="flex justify-end mb-8">
+            <button id="close-menu" class="w-10 h-10 flex items-center justify-center cursor-pointer">
+                <i class="ri-close-line ri-2x text-white"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6">
+            <a href="#about" class="text-xl text-gray-200 hover:text-white transition-colors">About</a>
+            <a href="#services" class="text-xl text-gray-200 hover:text-white transition-colors">Services</a>
+            <a href="#work" class="text-xl text-gray-200 hover:text-white transition-colors">Work</a>
+            <a href="#contact" class="text-xl text-gray-200 hover:text-white transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <!-- Particle Background -->
+        <div id="tsparticles" class="absolute inset-0 z-0"></div>
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight slide-in-left" id="hero-title">
+                    <span class="block">Need a clean, modern</span>
+                    <span class="block">website?</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 slide-in-right" id="hero-subtitle">We craft stunning, high-performance websites that convert visitors into customers.</p>
+                <a href="#contact" class="hero-btn inline-block bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 !rounded-button transition-all duration-300 scale-hover cursor-pointer glow-hover pulse relative overflow-hidden">
+                    <span class="relative z-10">Get in Touch</span>
+                    <span class="hero-btn-glow absolute inset-0 rounded-button pointer-events-none"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-950">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center fade-in">About <span class="text-primary">NexGen</span></h2>
+                <div class="glass p-8 rounded-lg fade-in">
+                    <p class="text-lg mb-6">NexGen WebWorks is a boutique web development studio founded by Fuhad, a passionate developer with an eye for clean, functional design.</p>
+                    <p class="text-lg mb-6">We specialize in creating modern, responsive websites that not only look stunning but also deliver exceptional user experiences and drive business results.</p>
+                    <p class="text-lg">Our approach combines cutting-edge technology with timeless design principles to create digital experiences that stand out in today's crowded online landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Our <span class="text-primary">Services</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-layout-4-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Portfolio Websites</h3>
+                    <p class="text-gray-300 text-center">Showcase your work with a stunning portfolio that highlights your skills and attracts potential clients.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-store-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">E-Commerce Solutions</h3>
+                    <p class="text-gray-300 text-center">Custom online stores with secure payment gateways, inventory management, and seamless checkout experiences.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-restart-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Website Redesigns</h3>
+                    <p class="text-gray-300 text-center">Transform your outdated website into a modern, responsive, and conversion-focused digital presence.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-speed-up-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Performance Optimization</h3>
+                    <p class="text-gray-300 text-center">Speed up your website, improve SEO rankings, and enhance user experience with our optimization services.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-code-box-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Custom Web Applications</h3>
+                    <p class="text-gray-300 text-center">Bespoke web applications tailored to your specific business needs and workflow requirements.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon">
+                        <i class="ri-customer-service-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center">Maintenance & Support</h3>
+                    <p class="text-gray-300 text-center">Ongoing support, updates, and maintenance to keep your website secure, fast, and up-to-date.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-20 bg-gray-950">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Our <span class="text-primary">Work</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://i.postimg.cc/13kb5NtX/Screenshot-20250616-230002-1.jpg" alt="BFoods Project" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">BFoods - Food Delivery</h3>
+                        <p class="text-gray-300 mb-4">A modern food delivery platform with online ordering system and real-time tracking.</p>
+                        <a href="https://fuhad912.github.io/bfoods/" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 cursor-pointer">
+                            <span>View Project</span>
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://i.postimg.cc/HWvZk7vm/Screenshot-20250616-230027-1.jpg" alt="NeymarGPT Project" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">NeymarGPT - AI Assistant</h3>
+                        <p class="text-gray-300 mb-4">An AI-powered chatbot with natural language processing and personalized responses.</p>
+                        <a href="https://fuhad912.github.io/NeymarGPT/" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 cursor-pointer">
+                            <span>View Project</span>
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://i.postimg.cc/WbrHY1SP/Screenshot-20250616-230040-2.jpg" alt="NeymarGPT Netlify" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">NeymarGPT - Pro Version</h3>
+                        <p class="text-gray-300 mb-4">Enhanced version of the AI assistant with advanced features and improved UI/UX.</p>
+                        <a href="https://neymargpt.netlify.app/" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 cursor-pointer">
+                            <span>View Project</span>
+                            <i class="ri-arrow-right-line ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Get in <span class="text-primary">Touch</span></h2>
+
+            <div class="max-w-xl mx-auto glass p-8 rounded-lg fade-in">
+                <p class="text-center text-lg mb-8">Ready to start your project? Reach out to us through any of these channels:</p>
+
+                <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
+                    <a href="https://wa.me/2348160271964" target="_blank" class="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white py-3 px-6 !rounded-button transition-all duration-300 cursor-pointer scale-hover">
+                        <i class="ri-whatsapp-fill ri-lg"></i>
+                        <span>WhatsApp</span>
+                    </a>
+
+                    <a href="https://instagram.com/nexgen383_" target="_blank" class="flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-6 !rounded-button transition-all duration-300 cursor-pointer scale-hover">
+                        <i class="ri-instagram-fill ri-lg"></i>
+                        <span>Instagram</span>
+                    </a>
+
+                    <a href="mailto:nexgen383@gmail.com" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button transition-all duration-300 cursor-pointer scale-hover">
+                        <i class="ri-mail-fill ri-lg"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+
+                <div class="text-center text-gray-300">
+                    <p>Or send us a message directly:</p>
+                    <p class="text-xl font-medium mt-2">nexgen383@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 NexGen WebWorks • All rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- Contact Bubble -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <a href="#contact" class="contact-bubble bg-primary text-white py-3 px-5 rounded-full flex items-center shadow-lg cursor-pointer float">
+            <i class="ri-chat-3-line ri-lg"></i>
+            <span class="ml-2 font-medium">Contact Us</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        });
+    </script>
+
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+            // Animated Particle Background (tsParticles)
+            if (window.tsParticles) {
+                tsParticles.load("tsparticles", {
+                    fullScreen: { enable: false },
+                    background: { color: "transparent" },
+                    particles: {
+                        number: { value: 40 },
+                        color: { value: ["#6D28D9", "#4C1D95", "#fff"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.25 },
+                        size: { value: { min: 2, max: 6 } },
+                        move: { enable: true, speed: 1.2, direction: "none", outModes: "out" },
+                        links: { enable: true, color: "#6D28D9", distance: 120, opacity: 0.15, width: 1 }
+                    },
+                    interactivity: {
+                        events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+                        modes: { repulse: { distance: 80, duration: 0.4 } }
+                    },
+                    detectRetina: true
+                });
+            }
+
+            // Hero Title Animation (split lines)
+            const heroTitle = document.getElementById('hero-title');
+            if (heroTitle) {
+                const lines = heroTitle.querySelectorAll('span.block');
+                lines.forEach((line, idx) => {
+                    const text = line.textContent;
+                    line.innerHTML = '';
+                    text.split('').forEach((char, i) => {
+                        const span = document.createElement('span');
+                        // Preserve spaces visually
+                        span.textContent = char === ' ' ? '\u00A0' : char;
+                        span.style.opacity = 0;
+                        span.style.display = 'inline-block';
+                        span.style.transform = 'translateY(40px)';
+                        line.appendChild(span);
+                    });
+                    gsap.to(line.querySelectorAll('span'), {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.04,
+                        duration: 0.7,
+                        ease: 'back.out(1.7)',
+                        delay: 0.2 + idx * 0.3
+                    });
+                });
+            }
+
+            // Hero Subtitle Typewriter Effect
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            if (heroSubtitle) {
+                const subtitleText = heroSubtitle.textContent;
+                heroSubtitle.textContent = '';
+                gsap.to(heroSubtitle, {
+                    duration: 2.5,
+                    text: subtitleText,
+                    ease: 'none',
+                    delay: 0.9
+                });
+                gsap.fromTo(heroSubtitle, {opacity: 0}, {opacity: 1, duration: 1, delay: 0.9});
+            }
+
+            // Hero Button Glow Animation
+            const heroBtn = document.querySelector('.hero-btn');
+            if (heroBtn) {
+                const glow = heroBtn.querySelector('.hero-btn-glow');
+                if (glow) {
+                    gsap.set(glow, {background: 'radial-gradient(circle at 50% 50%, #6D28D9 0%, transparent 70%)', opacity: 0.3});
+                    heroBtn.addEventListener('mouseenter', () => {
+                        gsap.to(glow, {opacity: 0.7, scale: 1.2, duration: 0.5, ease: 'power2.out'});
+                    });
+                    heroBtn.addEventListener('mouseleave', () => {
+                        gsap.to(glow, {opacity: 0.3, scale: 1, duration: 0.5, ease: 'power2.inOut'});
+                    });
+                }
+            }
+
+            // Navigation Link Underline Animation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    gsap.to(link, {color: '#fff', duration: 0.2});
+                });
+                link.addEventListener('mouseleave', () => {
+                    gsap.to(link, {color: '#e5e7eb', duration: 0.2});
+                });
+            });
+
+            // Section Reveal with Parallax
+            document.querySelectorAll('section').forEach(section => {
+                if (section.id !== 'hero') {
+                    gsap.set(section, {opacity: 0, y: 60});
+                    gsap.to(section, {
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        },
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    });
+                }
+            });
+
+            // Project Card Advanced Animation
+            document.querySelectorAll('.project-card').forEach((card, i) => {
+                gsap.set(card, {opacity: 0, y: 40, scale: 0.96, rotate: -2});
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    rotate: 0,
+                    duration: 0.9,
+                    delay: i * 0.08,
+                    ease: 'expo.out'
+                });
+                // Card hover effect
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card, {scale: 1.04, boxShadow: '0 24px 40px -8px #6D28D9', duration: 0.4, ease: 'power2.out'});
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {scale: 1, boxShadow: '0 0px 0px rgba(0,0,0,0)', duration: 0.4, ease: 'power2.inOut'});
+                });
+            });
+
+            // Service Icon Hover + Pulse
+            document.querySelectorAll('.service-icon').forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    gsap.to(icon, {y: -12, rotate: 10, boxShadow: '0 12px 30px rgba(109,40,217,0.4)', scale: 1.12, duration: 0.5, ease: 'elastic.out(1,0.5)'});
+                });
+                icon.addEventListener('mouseleave', () => {
+                    gsap.to(icon, {y: 0, rotate: 0, boxShadow: '0 0px 0px rgba(0,0,0,0)', scale: 1, duration: 0.5, ease: 'power2.inOut'});
+                });
+            });
+
+            // Contact Bubble Floating & Glow
+            const contactBubble = document.querySelector('.contact-bubble');
+            if (contactBubble) {
+                gsap.to(contactBubble, {
+                    y: -10,
+                    boxShadow: '0 0 30px 5px #6D28D9',
+                    repeat: -1,
+                    yoyo: true,
+                    duration: 1.5,
+                    ease: 'sine.inOut'
+                });
+                contactBubble.addEventListener('mouseenter', () => {
+                    gsap.to(contactBubble, {scale: 1.08, boxShadow: '0 0 40px 10px #6D28D9', duration: 0.4});
+                });
+                contactBubble.addEventListener('mouseleave', () => {
+                    gsap.to(contactBubble, {scale: 1, boxShadow: '0 0 30px 5px #6D28D9', duration: 0.4});
+                });
+            }
+
+            // Footer Fade In
+            const footer = document.querySelector('footer');
+            if (footer) {
+                gsap.set(footer, {opacity: 0, y: 30});
+                gsap.to(footer, {
+                    scrollTrigger: {
+                        trigger: footer,
+                        start: 'top 95%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

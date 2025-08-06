@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#6D28D9">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexGen WebWorks | Web Development Agency</title>
+    <title>NexGen WebWorks | Optimized Web Development</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>tailwind.config={theme:{extend:{colors:{primary:'#6D28D9',secondary:'#4C1D95'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-    <!-- tsParticles for animated background -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
     <style>
-        :where([class^="ri-"])::before { content: "\f3c2"; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0a0a0d;
@@ -41,24 +28,11 @@
         }
         .glass-hover:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         .hero-gradient {
             background: linear-gradient(135deg, rgba(109, 40, 217, 0.2) 0%, rgba(10, 10, 13, 0.95) 100%);
             position: relative;
             overflow: hidden;
-        }
-        .typing-animation::after {
-            content: "|";
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        .scale-hover:hover {
-            transform: scale(1.05);
         }
         .nav-link {
             position: relative;
@@ -84,14 +58,61 @@
             transform: translateX(0);
         }
 
+        /* Performance Optimized Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .slide-in-left.appear {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .slide-in-right.appear {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scale-hover {
+            transition: transform 0.3s ease;
+        }
+        .scale-hover:hover {
+            transform: scale(1.05);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .contact-bubble {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
         /* Responsive Tweaks */
         @media (max-width: 768px) {
             .container {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
-            }
-            .max-w-3xl {
-                max-width: 100% !important;
             }
             .hero-gradient {
                 min-height: 80vh !important;
@@ -110,32 +131,16 @@
                 padding: 0.75rem 1.5rem !important;
                 font-size: 1rem !important;
             }
-            .glass, .glass-hover {
-                padding: 1.25rem !important;
+            .project-card img {
+                height: 200px;
+                object-fit: cover;
             }
-            .grid {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
+            #contact .flex-col {
+                gap: 1rem;
             }
-            .project-card {
-                margin-bottom: 1.5rem !important;
-            }
-            section {
-                padding-top: 2.5rem !important;
-                padding-bottom: 2.5rem !important;
-            }
-            .contact-bubble {
-                right: 1rem !important;
-                bottom: 1rem !important;
-                padding: 0.75rem 1.25rem !important;
-                font-size: 1rem !important;
-            }
-            .w-16, .h-16 {
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-            }
-            .service-icon {
-                margin-bottom: 0.5rem !important;
+            #contact a {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -147,308 +152,19 @@
             #hero-subtitle {
                 font-size: 0.95rem !important;
             }
-            .hero-btn {
-                font-size: 0.95rem !important;
-                padding: 0.6rem 1.1rem !important;
-            }
-            .glass, .glass-hover {
-                padding: 0.8rem !important;
-            }
-            .contact-bubble {
-                font-size: 0.95rem !important;
-                padding: 0.6rem 1.1rem !important;
+            .project-card img {
+                height: 150px;
             }
         }
-
-        /* New Animations */
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .float {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 1s ease-out forwards;
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .slide-in-right {
-            animation: slideInRight 1s ease-out forwards;
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .rotate-hover:hover {
-            transform: rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .glow-hover:hover {
-            box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .hero-gradient::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .bounce {
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Advanced Professional Animations */
-        .morphing-gradient {
-            background: linear-gradient(-45deg, #6D28D9, #4C1D95, #7C3AED, #5B21B6);
-            background-size: 400% 400%;
-            animation: morphingGradient 8s ease infinite;
-        }
-        @keyframes morphingGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .text-shimmer {
-            background: linear-gradient(90deg, #F4F4F5 0%, #6D28D9 50%, #F4F4F5 100%);
-            background-size: 200% 100%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .floating-elements {
-            animation: floating 6s ease-in-out infinite;
-        }
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(2deg); }
-            66% { transform: translateY(-10px) rotate(-1deg); }
-        }
-
-        .magnetic-hover {
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .magnetic-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(109, 40, 217, 0.3);
-        }
-
-        .parallax-scroll {
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .stagger-children > * {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-icon {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-hover:hover .service-icon {
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
-        }
-
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: center bottom;
-        }
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-bubble {
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .contact-bubble:hover {
-            transform: scale(1.05);
-        }
-
-        /* Advanced Button Animations */
-        .btn-ripple {
-            position: relative;
+        
+        /* FAQ Accordion */
+        .faq-content {
+            max-height: 0;
             overflow: hidden;
+            transition: max-height 0.3s ease-out;
         }
-        .btn-ripple::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        .btn-ripple:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Text Animation Classes */
-        .split-text {
-            overflow: hidden;
-        }
-        .split-text span {
-            display: inline-block;
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        /* Scroll-triggered animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-up.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .slide-in-left.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .slide-in-right.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .scale-in.animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Hover effects for social links */
-        .social-link {
-            position: relative;
-            overflow: hidden;
-        }
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        .social-link:hover::before {
-            left: 100%;
-        }
-
-        /* Advanced particle effects */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #6D28D9;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        /* Cursor trail effect */
-        .cursor-trail {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #6D28D9;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        }
-
-        /* Footer text visibility fix */
-        footer p {
-            color: #9CA3AF !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            z-index: 10 !important;
-            position: relative !important;
+        .faq-toggle.active i {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -465,9 +181,9 @@
                 <a href="#services" class="nav-link text-gray-200 hover:text-white transition-colors">Services</a>
                 <a href="#work" class="nav-link text-gray-200 hover:text-white transition-colors">Work</a>
                 <a href="#testimonials" class="nav-link text-gray-200 hover:text-white transition-colors">Testimonials</a>
-                                    <a href="#pricing" class="nav-link text-gray-200 hover:text-white transition-colors">Pricing</a>
-                    <a href="#faq" class="nav-link text-gray-200 hover:text-white transition-colors">FAQ</a>
-                    <a href="#contact" class="nav-link text-gray-200 hover:text-white transition-colors">Contact</a>
+                <a href="#pricing" class="nav-link text-gray-200 hover:text-white transition-colors">Pricing</a>
+                <a href="#faq" class="nav-link text-gray-200 hover:text-white transition-colors">FAQ</a>
+                <a href="#contact" class="nav-link text-gray-200 hover:text-white transition-colors">Contact</a>
             </div>
 
             <button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer">
@@ -495,9 +211,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero-gradient min-h-screen flex items-center pt-16 relative overflow-hidden">
-        <!-- Particle Background -->
-        <div id="tsparticles" class="absolute inset-0 z-0"></div>
+    <section id="hero" class="hero-gradient min-h-screen flex items-center pt-16 relative">
         <div class="container mx-auto px-4 py-20 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight slide-in-left" id="hero-title">
@@ -505,9 +219,8 @@
                     <span class="block">website?</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 mb-8 slide-in-right" id="hero-subtitle">We craft stunning, high-performance websites that convert visitors into customers.</p>
-                <a href="#contact" class="hero-btn inline-block bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 !rounded-button transition-all duration-300 scale-hover cursor-pointer glow-hover pulse relative overflow-hidden btn-ripple">
-                    <span class="relative z-10">Get in Touch</span>
-                    <span class="hero-btn-glow absolute inset-0 rounded-button pointer-events-none"></span>
+                <a href="#contact" class="hero-btn inline-block bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 !rounded-button transition-all duration-300 scale-hover cursor-pointer">
+                    <span>Get in Touch</span>
                 </a>
             </div>
         </div>
@@ -530,7 +243,7 @@
                 <!-- Right Side - Founder Image and Details -->
                 <div class="text-center lg:text-left fade-in">
                     <div class="glass p-6 rounded-lg">
-                        <img src="https://i.postimg.cc/BQmVK9dC/Snapchat-1082598373.jpg" alt="Fuhad Bello - Founder and CEO" class="w-64 h-64 mx-auto lg:mx-0 rounded-full object-cover mb-6 border-4 border-primary/20 shadow-2xl">
+                        <img src="https://i.postimg.cc/BQmVK9dC/Snapchat-1082598373.jpg" alt="Fuhad Bello - Founder and CEO" class="w-64 h-64 mx-auto lg:mx-0 rounded-full object-cover mb-6 border-4 border-primary/20 shadow-lg">
                         <h3 class="text-2xl font-bold text-white mb-2">Fuhad Bello</h3>
                         <p class="text-lg text-primary font-semibold mb-4">Founder and CEO</p>
                         <p class="text-gray-300 text-sm leading-relaxed">Passionate developer with an eye for clean, functional design. Dedicated to creating digital experiences that drive business results and exceed client expectations.</p>
@@ -547,8 +260,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-layout-4-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">Portfolio Websites</h3>
@@ -556,8 +269,8 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-store-2-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">E-Commerce Solutions</h3>
@@ -565,8 +278,8 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-restart-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">Website Redesigns</h3>
@@ -574,8 +287,8 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-speed-up-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">Performance Optimization</h3>
@@ -583,8 +296,8 @@
                 </div>
 
                 <!-- Service 5 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-code-box-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">Custom Web Applications</h3>
@@ -592,8 +305,8 @@
                 </div>
 
                 <!-- Service 6 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full magnetic-hover">
-                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto service-icon floating-elements">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="w-16 h-16 flex items-center justify-center mb-4 bg-primary/20 rounded-full mx-auto">
                         <i class="ri-customer-service-2-line ri-xl text-primary"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-center">Maintenance & Support</h3>
@@ -610,7 +323,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card fade-in">
                     <div class="h-48 overflow-hidden">
                         <img src="https://i.postimg.cc/13kb5NtX/Screenshot-20250616-230002-1.jpg" alt="BFoods Project" class="w-full h-full object-cover object-top">
                     </div>
@@ -625,7 +338,7 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card fade-in">
                     <div class="h-48 overflow-hidden">
                         <img src="https://i.postimg.cc/HWvZk7vm/Screenshot-20250616-230027-1.jpg" alt="NeymarGPT Project" class="w-full h-full object-cover object-top">
                     </div>
@@ -640,7 +353,7 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card">
+                <div class="glass rounded-lg overflow-hidden transition-all duration-300 project-card fade-in">
                     <div class="h-48 overflow-hidden">
                         <img src="https://i.postimg.cc/WbrHY1SP/Screenshot-20250616-230040-2.jpg" alt="NeymarGPT Netlify" class="w-full h-full object-cover object-top">
                     </div>
@@ -664,7 +377,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-primary to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                             A
@@ -685,7 +398,7 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                             F
@@ -706,7 +419,7 @@
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                             C
@@ -727,7 +440,7 @@
                 </div>
 
                 <!-- Testimonial 4 -->
-                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full">
+                <div class="glass p-6 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                             Z
@@ -749,7 +462,7 @@
             </div>
 
             <!-- Trust Indicators -->
-            <div class="mt-16 text-center">
+            <div class="mt-16 text-center fade-in">
                 <p class="text-gray-400 mb-6">Trusted by businesses across Nigeria</p>
                 <div class="flex justify-center items-center space-x-8 opacity-60">
                     <div class="text-2xl font-bold text-gray-500">50+</div>
@@ -770,94 +483,247 @@
     <!-- FAQ Section -->
     <section id="faq" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Frequently Asked <span class="text-primary">Questions</span></h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Frequently Asked <span class="text-primary">Questions</span></h2>
             
             <div class="max-w-4xl mx-auto space-y-6">
                 <!-- FAQ Item 1 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">How long does it take to build my website?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">It depends on the complexity of your project! A single-page website typically takes 3-4 days, while more complex websites take 7-14 days. We'll give you a specific timeline during our consultation. We believe in quality over speed, but we also understand you want to get your business online quickly.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">What if I don't like the design? Can you make changes?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">Absolutely! We include 2 rounds of revisions in all our packages. We want you to love your website, so we're happy to make adjustments until you're completely satisfied. We'll work closely with you throughout the process to ensure the design matches your vision perfectly.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">Do you provide ongoing support after the website is live?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">Yes! We offer different support packages depending on your needs. Our maintenance plans include regular updates, security monitoring, and technical support. We're here to help you succeed online, not just build your website and disappear.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">Can I update my website content myself?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">We're always online 24/7 for any changes you wish to make! However, we do require consultation first to ensure we understand your requirements properly. This helps us deliver exactly what you need and maintain the quality of your website.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 5 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">What payment methods do you accept?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">We accept bank transfers to Moniepoint, PalmPay, and Union Bank. We typically require a 50% deposit to start work, with the remaining balance due upon project completion. We're flexible and can work out a payment plan that suits your budget.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 6 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">Will my website work on mobile phones?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">Absolutely! All our websites are fully responsive, meaning they look and work perfectly on phones, tablets, and computers. In Nigeria, most people browse on mobile, so we make sure your website provides an excellent experience on all devices.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 7 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">Do you help with domain and hosting setup?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">Yes, we handle everything! We'll help you choose the right domain name, set up reliable hosting, and configure everything properly. Note that domain names are paid separately and prices vary depending on the name you choose. We use trusted hosting providers to ensure your website stays fast and secure. We'll guide you through the entire process.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 8 -->
                 <div class="glass p-6 rounded-lg glass-hover">
-                    <button class="faq-toggle w-full flex justify-between items-center text-left" onclick="toggleFAQ(this)">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
                         <h3 class="text-lg font-semibold text-white">What if I have an existing website that needs improvement?</h3>
                         <i class="ri-arrow-down-s-line text-primary text-xl"></i>
                     </button>
-                    <div class="faq-content hidden mt-4">
+                    <div class="faq-content mt-4">
                         <p class="text-gray-300 leading-relaxed">No problem! We specialize in website redesigns and improvements. We can modernize your existing site, improve its performance, or completely rebuild it with a fresh design. We'll assess your current website and recommend the best approach for your goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-950">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in">Our <span class="text-primary">Pricing</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Package -->
+                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Basic Package</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">₦75,000</div>
+                        <p class="text-gray-400">Perfect for small businesses</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Single Page Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Mobile Responsive</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Contact Form</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Basic SEO</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>1 Month Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Social Media Integration</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Professional Package -->
+                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full border-2 border-primary relative fade-in">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Professional Package</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">₦150,000</div>
+                        <p class="text-gray-400">Ideal for growing businesses</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>2-6 Page Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Advanced Animations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Blog Section</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Advanced SEO</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>3 Months Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Analytics Integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Content Management Training</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full fade-in">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Premium Package</h3>
+                        <div class="text-4xl font-bold text-primary mb-2">₦300,000</div>
+                        <p class="text-gray-400">For high-end businesses</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Unlimited Pages</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Custom Animations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>E-commerce Features</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Priority Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>6 Months Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-check-line text-green-400 mr-3"></i>
+                            <span>Custom API Development</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="mt-16 fade-in">
+                <h3 class="text-2xl font-bold mb-8 text-center">Additional <span class="text-primary">Services</span></h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <div class="glass p-6 rounded-lg text-center">
+                        <h4 class="font-semibold mb-2">Website Maintenance</h4>
+                        <p class="text-gray-400 text-sm mb-3">Monthly updates and security</p>
+                        <div class="text-primary font-bold">₦15,000/month</div>
+                    </div>
+                    <div class="glass p-6 rounded-lg text-center">
+                        <h4 class="font-semibold mb-2">SEO Optimization</h4>
+                        <p class="text-gray-400 text-sm mb-3">Search engine optimization</p>
+                        <div class="text-primary font-bold">₦20,000</div>
                     </div>
                 </div>
             </div>
@@ -907,161 +773,8 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-950">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Our <span class="text-primary">Pricing</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Basic Package -->
-                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-4">Basic Package</h3>
-                        <div class="text-4xl font-bold text-primary mb-2">₦75,000</div>
-                        <p class="text-gray-400">Perfect for small businesses</p>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Single Page Website</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Mobile Responsive</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Contact Form</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Basic SEO</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>1 Month Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Social Media Integration</span>
-                        </li>
-                    </ul>
-                    
-                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Professional Package -->
-                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full border-2 border-primary relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
-                        Most Popular
-                    </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-4">Professional Package</h3>
-                        <div class="text-4xl font-bold text-primary mb-2">₦150,000</div>
-                        <p class="text-gray-400">Ideal for growing businesses</p>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>2-6 Page Website</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Advanced Animations</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Blog Section</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Advanced SEO</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>3 Months Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Analytics Integration</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Content Management Training</span>
-                        </li>
-                    </ul>
-                    
-                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Premium Package -->
-                <div class="glass p-8 rounded-lg transition-all duration-300 glass-hover h-full">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-4">Premium Package</h3>
-                        <div class="text-4xl font-bold text-primary mb-2">₦300,000</div>
-                        <p class="text-gray-400">For high-end businesses</p>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Unlimited Pages</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Custom Animations</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>E-commerce Features</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Priority Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>6 Months Support</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="ri-check-line text-green-400 mr-3"></i>
-                            <span>Custom API Development</span>
-                        </li>
-                    </ul>
-                    
-                    <a href="#contact" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-button transition-all duration-300 text-center block">
-                        Get Started
-                    </a>
-                </div>
-            </div>
-
-            <!-- Additional Services -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold mb-8 text-center">Additional <span class="text-primary">Services</span></h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    <div class="glass p-6 rounded-lg text-center">
-                        <h4 class="font-semibold mb-2">Website Maintenance</h4>
-                        <p class="text-gray-400 text-sm mb-3">Monthly updates and security</p>
-                        <div class="text-primary font-bold">₦15,000/month</div>
-                    </div>
-                    <div class="glass p-6 rounded-lg text-center">
-                        <h4 class="font-semibold mb-2">SEO Optimization</h4>
-                        <p class="text-gray-400 text-sm mb-3">Search engine optimization</p>
-                        <div class="text-primary font-bold">₦20,000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="py-8 border-t border-gray-800 bg-gray-950">
+    <footer class="py-8 border-t border-gray-800 bg-gray-950 fade-in">
         <div class="container mx-auto px-4 text-center">
             <p class="text-gray-400 !important" style="color: #9CA3AF !important; z-index: 10; position: relative;">© 2025 NexGen WebWorks • All rights reserved</p>
         </div>
@@ -1069,57 +782,45 @@
 
     <!-- Contact Bubble -->
     <div class="fixed bottom-6 right-6 z-40">
-        <a href="#contact" class="contact-bubble bg-primary text-white py-3 px-5 rounded-full flex items-center shadow-lg cursor-pointer float">
+        <a href="#contact" class="contact-bubble bg-primary text-white py-3 px-5 rounded-full flex items-center shadow-lg cursor-pointer">
             <i class="ri-chat-3-line ri-lg"></i>
             <span class="ml-2 font-medium">Contact Us</span>
         </a>
     </div>
 
     <!-- Scripts -->
-    <script id="navigation-script">
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
             const menuToggle = document.getElementById('menu-toggle');
             const closeMenu = document.getElementById('close-menu');
             const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-
+            
             menuToggle.addEventListener('click', function() {
                 mobileMenu.classList.add('open');
                 document.body.style.overflow = 'hidden';
             });
-
+            
             closeMenu.addEventListener('click', function() {
                 mobileMenu.classList.remove('open');
                 document.body.style.overflow = '';
             });
-
-            mobileMenuLinks.forEach(link => {
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', function() {
                     mobileMenu.classList.remove('open');
                     document.body.style.overflow = '';
                 });
             });
-
-            // Ensure external links work properly
-            document.querySelectorAll('a[href*=".html"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Don't prevent default for external links
-                    // Let them navigate normally
-                });
-            });
-        });
-    </script>
-
-    <script id="smooth-scroll-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            // Only apply smooth scrolling to internal anchor links
+            
+            // Smooth Scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-
+                    
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-
+                    
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
@@ -1128,514 +829,42 @@
                     }
                 });
             });
-
-            // Ensure external links work properly
-            document.querySelectorAll('a[href*=".html"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Don't prevent default for external links
-                    // Let them navigate normally
-                });
-            });
-        });
-    </script>
-
-    <script id="animation-script">
-        document.addEventListener('DOMContentLoaded', function() {
-            gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-            // Advanced Particle Background with Enhanced Configuration
-            if (window.tsParticles) {
-                tsParticles.load("tsparticles", {
-                    fullScreen: { enable: false },
-                    background: { color: "transparent" },
-                    particles: {
-                        number: { value: 60, density: { enable: true, value_area: 800 } },
-                        color: { value: ["#6D28D9", "#4C1D95", "#7C3AED", "#fff"] },
-                        shape: { 
-                            type: "circle",
-                            stroke: { width: 0, color: "#000000" },
-                            polygon: { nb_sides: 5 }
-                        },
-                        opacity: { 
-                            value: 0.3, 
-                            random: true,
-                            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
-                        },
-                        size: { 
-                            value: 3, 
-                            random: true,
-                            anim: { enable: true, speed: 2, size_min: 0.1, sync: false }
-                        },
-                        line_linked: {
-                            enable: true,
-                            distance: 150,
-                            color: "#6D28D9",
-                            opacity: 0.2,
-                            width: 1
-                        },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                            direction: "none",
-                            random: true,
-                            straight: false,
-                            out_mode: "out",
-                            bounce: false,
-                            attract: { enable: true, rotateX: 600, rotateY: 1200 }
-                        }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true, mode: "repulse" },
-                            onclick: { enable: true, mode: "push" },
-                            resize: true
-                        },
-                        modes: {
-                            grab: { distance: 400, line_linked: { opacity: 1 } },
-                            bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
-                            repulse: { distance: 200, duration: 0.4 },
-                            push: { particles_nb: 4 },
-                            remove: { particles_nb: 2 }
-                        }
-                    },
-                    retina_detect: true
-                });
-            }
-
-            // Advanced Hero Title Animation with Morphing Text
-            const heroTitle = document.getElementById('hero-title');
-            if (heroTitle) {
-                const lines = heroTitle.querySelectorAll('span.block');
-                lines.forEach((line, idx) => {
-                    const text = line.textContent;
-                    line.innerHTML = '';
-                    text.split('').forEach((char, i) => {
-                        const span = document.createElement('span');
-                        span.textContent = char === ' ' ? '\u00A0' : char;
-                        span.style.opacity = 0;
-                        span.style.display = 'inline-block';
-                        span.style.transform = 'translateY(40px) rotateX(90deg)';
-                        span.style.transformOrigin = 'center bottom';
-                        line.appendChild(span);
-                    });
-                    
-                    gsap.to(line.querySelectorAll('span'), {
-                        opacity: 1,
-                        y: 0,
-                        rotationX: 0,
-                        stagger: 0.03,
-                        duration: 0.8,
-                        ease: 'back.out(1.7)',
-                        delay: 0.2 + idx * 0.4
-                    });
-                });
-
-                // Add floating animation to hero title
-                gsap.to(heroTitle, {
-                    y: -10,
-                    duration: 3,
-                    ease: "sine.inOut",
-                    repeat: -1,
-                    yoyo: true
-                });
-            }
-
-            // Enhanced Hero Subtitle with Shimmer Effect
-            const heroSubtitle = document.getElementById('hero-subtitle');
-            if (heroSubtitle) {
-                const subtitleText = heroSubtitle.textContent;
-                heroSubtitle.textContent = '';
-                heroSubtitle.classList.add('text-shimmer');
-                
-                gsap.to(heroSubtitle, {
-                    duration: 3,
-                    text: subtitleText,
-                    ease: 'none',
-                    delay: 1.2
-                });
-                
-                gsap.fromTo(heroSubtitle, 
-                    {opacity: 0, scale: 0.8}, 
-                    {opacity: 1, scale: 1, duration: 1.2, delay: 1.2, ease: 'elastic.out(1,0.5)'}
-                );
-            }
-
-            // Advanced Hero Button with Ripple Effect
-            const heroBtn = document.querySelector('.hero-btn');
-            if (heroBtn) {
-                heroBtn.classList.add('btn-ripple');
-                const glow = heroBtn.querySelector('.hero-btn-glow');
-                if (glow) {
-                    gsap.set(glow, {
-                        background: 'radial-gradient(circle at 50% 50%, #6D28D9 0%, transparent 70%)', 
-                        opacity: 0.3
-                    });
-                    
-                    heroBtn.addEventListener('mouseenter', () => {
-                        gsap.to(glow, {opacity: 0.8, scale: 1.3, duration: 0.6, ease: 'power2.out'});
-                        gsap.to(heroBtn, {scale: 1.05, duration: 0.3, ease: 'power2.out'});
-                    });
-                    
-                    heroBtn.addEventListener('mouseleave', () => {
-                        gsap.to(glow, {opacity: 0.3, scale: 1, duration: 0.6, ease: 'power2.inOut'});
-                        gsap.to(heroBtn, {scale: 1, duration: 0.3, ease: 'power2.inOut'});
-                    });
-                }
-            }
-
-            // Enhanced Navigation with Magnetic Effect
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.add('magnetic-hover');
-                
-                link.addEventListener('mouseenter', () => {
-                    gsap.to(link, {color: '#fff', scale: 1.1, duration: 0.3, ease: 'power2.out'});
-                });
-                
-                link.addEventListener('mouseleave', () => {
-                    gsap.to(link, {color: '#e5e7eb', scale: 1, duration: 0.3, ease: 'power2.inOut'});
-                });
-            });
-
-            // Fix navigation bar position after animations
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function() {
-                    // Reset all nav links to normal position
-                    gsap.to('.nav-link', {
-                        color: '#e5e7eb',
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power2.inOut'
-                    });
-                });
-            });
-
-            // Ensure navigation links return to normal state after animations
-            setTimeout(() => {
-                gsap.set('.nav-link', {
-                    color: '#e5e7eb',
-                    scale: 1
-                });
-            }, 1000);
-
-            // Advanced Section Reveal with Staggered Children
-            document.querySelectorAll('section').forEach(section => {
-                if (section.id !== 'hero') {
-                    gsap.set(section, {opacity: 0, y: 80});
-                    
-                    gsap.to(section, {
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top 85%',
-                            toggleActions: 'play none none reverse'
-                        },
-                        opacity: 1,
-                        y: 0,
-                        duration: 1.5,
-                        ease: 'power3.out'
-                    });
-
-                    // Stagger children animations
-                    const children = section.querySelectorAll('.glass, .project-card, .service-icon');
-                    if (children.length > 0) {
-                        gsap.fromTo(children, 
-                            {opacity: 0, y: 50, scale: 0.9},
-                            {
-                                scrollTrigger: {
-                                    trigger: section,
-                                    start: 'top 80%'
-                                },
-                                opacity: 1,
-                                y: 0,
-                                scale: 1,
-                                stagger: 0.1,
-                                duration: 0.8,
-                                ease: 'back.out(1.7)'
-                            }
-                        );
-                    }
-                }
-            });
-
-            // Enhanced Project Cards with 3D Transform
-            document.querySelectorAll('.project-card').forEach((card, i) => {
-                gsap.set(card, {opacity: 0, y: 60, scale: 0.9, rotationY: -15});
-                
-                gsap.to(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 90%',
-                        toggleActions: 'play none none none'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    rotationY: 0,
-                    duration: 1.2,
-                    delay: i * 0.15,
-                    ease: 'expo.out'
-                });
-
-                // Advanced hover effects
-                card.addEventListener('mouseenter', () => {
-                    gsap.to(card, {
-                        scale: 1.05, 
-                        rotationY: 5,
-                        boxShadow: '0 25px 50px -12px rgba(109, 40, 217, 0.4)',
-                        duration: 0.5, 
-                        ease: 'power2.out'
-                    });
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, {
-                        scale: 1, 
-                        rotationY: 0,
-                        boxShadow: '0 0px 0px rgba(0,0,0,0)', 
-                        duration: 0.5, 
-                        ease: 'power2.inOut'
-                    });
-                });
-            });
-
-            // Enhanced Service Icons with Floating Animation
-            document.querySelectorAll('.service-icon').forEach((icon, i) => {
-                gsap.set(icon, {opacity: 0, scale: 0.5, rotation: -180});
-                
-                gsap.to(icon, {
-                    scrollTrigger: {
-                        trigger: icon,
-                        start: 'top 90%'
-                    },
-                    opacity: 1,
-                    scale: 1,
-                    rotation: 0,
-                    duration: 1,
-                    delay: i * 0.1,
-                    ease: 'elastic.out(1,0.5)'
-                });
-
-                // Floating animation
-                gsap.to(icon, {
-                    y: -8,
-                    duration: 2,
-                    ease: "sine.inOut",
-                    repeat: -1,
-                    yoyo: true,
-                    delay: i * 0.2
-                });
-
-                icon.addEventListener('mouseenter', () => {
-                    gsap.to(icon, {
-                        y: -15, 
-                        rotate: 15, 
-                        scale: 1.15,
-                        boxShadow: '0 15px 35px rgba(109,40,217,0.5)', 
-                        duration: 0.6, 
-                        ease: 'elastic.out(1,0.5)'
-                    });
-                });
-                
-                icon.addEventListener('mouseleave', () => {
-                    gsap.to(icon, {
-                        y: -8, 
-                        rotate: 0, 
-                        scale: 1,
-                        boxShadow: '0 0px 0px rgba(0,0,0,0)', 
-                        duration: 0.6, 
-                        ease: 'power2.inOut'
-                    });
-                });
-            });
-
-            // Enhanced Contact Bubble with Particle Trail
-            const contactBubble = document.querySelector('.contact-bubble');
-            if (contactBubble) {
-                gsap.to(contactBubble, {
-                    y: -15,
-                    boxShadow: '0 0 40px 10px #6D28D9',
-                    repeat: -1,
-                    yoyo: true,
-                    duration: 2,
-                    ease: 'sine.inOut'
-                });
-                
-                contactBubble.addEventListener('mouseenter', () => {
-                    gsap.to(contactBubble, {
-                        scale: 1.1, 
-                        boxShadow: '0 0 50px 15px #6D28D9', 
-                        duration: 0.4
-                    });
-                });
-                
-                contactBubble.addEventListener('mouseleave', () => {
-                    gsap.to(contactBubble, {
-                        scale: 1, 
-                        boxShadow: '0 0 40px 10px #6D28D9', 
-                        duration: 0.4
-                    });
-                });
-            }
-
-            // Enhanced Footer with Subtle Animation
-            const footer = document.querySelector('footer');
-            if (footer) {
-                gsap.set(footer, {opacity: 0, y: 50});
-                gsap.to(footer, {
-                    scrollTrigger: {
-                        trigger: footer,
-                        start: 'top 95%',
-                        toggleActions: 'play none none none'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: 'power2.out',
-                    onComplete: () => {
-                        // Ensure footer text is visible after animation
-                        const footerText = footer.querySelector('p');
-                        if (footerText) {
-                            gsap.set(footerText, {
-                                color: '#9CA3AF',
-                                opacity: 1,
-                                visibility: 'visible'
-                            });
-                        }
-                    }
-                });
-            }
-
-            // Advanced Social Links with Shimmer Effect
-            document.querySelectorAll('a[href*="wa.me"], a[href*="instagram"], a[href*="linkedin"], a[href*="x.com"], a[href*="mailto"]').forEach(link => {
-                link.classList.add('social-link');
-                
-                link.addEventListener('mouseenter', () => {
-                    gsap.to(link, {scale: 1.05, duration: 0.3, ease: 'power2.out'});
-                });
-                
-                link.addEventListener('mouseleave', () => {
-                    gsap.to(link, {scale: 1, duration: 0.3, ease: 'power2.inOut'});
-                });
-            });
-
-            // Cursor Trail Effect
-            const cursor = document.createElement('div');
-            cursor.className = 'cursor-trail';
-            document.body.appendChild(cursor);
-
-            document.addEventListener('mousemove', (e) => {
-                gsap.to(cursor, {
-                    x: e.clientX - 10,
-                    y: e.clientY - 10,
-                    duration: 0.1,
-                    ease: 'power2.out'
-                });
-            });
-
-            // Particle Burst on Click
-            document.addEventListener('click', (e) => {
-                for (let i = 0; i < 8; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = e.clientX + 'px';
-                    particle.style.top = e.clientY + 'px';
-                    document.body.appendChild(particle);
-
-                    gsap.to(particle, {
-                        x: (Math.random() - 0.5) * 100,
-                        y: (Math.random() - 0.5) * 100,
-                        opacity: 1,
-                        duration: 0.8,
-                        ease: 'power2.out',
-                        onComplete: () => {
-                            document.body.removeChild(particle);
-                        }
-                    });
-                }
-            });
-
-            // Scroll Progress Indicator
-            const progressBar = document.createElement('div');
-            progressBar.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 3px;
-                background: linear-gradient(90deg, #6D28D9, #7C3AED);
-                z-index: 10000;
-                transition: width 0.1s ease;
-            `;
-            document.body.appendChild(progressBar);
-
-            window.addEventListener('scroll', () => {
-                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                progressBar.style.width = scrolled + '%';
-            });
-
-            // Parallax Effect for Background Elements
-            gsap.to('.hero-gradient::before', {
-                scrollTrigger: {
-                    trigger: '.hero-gradient',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                },
-                y: -100,
-                ease: 'none'
-            });
-
-            // Text Reveal Animation for Sections
-            document.querySelectorAll('h2, h3, p').forEach((element, index) => {
-                gsap.fromTo(element, 
-                    {opacity: 0, y: 30},
-                    {
-                        scrollTrigger: {
-                            trigger: element,
-                            start: 'top 90%',
-                            toggleActions: 'play none none reverse'
-                        },
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        delay: index * 0.1,
-                        ease: 'power2.out'
-                    }
-                );
-            });
-
-            // FAQ Toggle Functionality
-            window.toggleFAQ = function(button) {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                const isOpen = content.classList.contains('hidden');
-                
-                // Close all other FAQ items
-                document.querySelectorAll('.faq-content').forEach(item => {
-                    if (item !== content) {
-                        item.classList.add('hidden');
-                        item.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
-                    }
-                });
-                
-                // Toggle current FAQ item
-                if (isOpen) {
-                    content.classList.remove('hidden');
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    content.classList.add('hidden');
-                    icon.style.transform = 'rotate(0deg)';
-                }
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
             };
-
-            // FAQ hover effects (removed for instant response)
-            document.querySelectorAll('.faq-toggle').forEach(button => {
-                button.addEventListener('mouseenter', () => {
-                    button.style.transform = 'scale(1.02)';
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target);
+                    }
                 });
-                
-                button.addEventListener('mouseleave', () => {
-                    button.style.transform = 'scale(1)';
+            }, observerOptions);
+            
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // FAQ Toggle
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    
+                    // Toggle the active class
+                    this.classList.toggle('active');
+                    
+                    // Toggle the content display
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
                 });
             });
         });

@@ -22,7 +22,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/45 backdrop-blur-xl">
       <nav
-        className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6"
+        className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6"
         aria-label="Primary"
       >
         <Link
@@ -49,13 +49,29 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="rounded-full border border-neutral-600 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-200 transition-colors hover:border-white hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 md:hidden"
+          className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-neutral-600 text-neutral-200 transition-colors hover:border-white hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 md:hidden"
           onClick={() => setMenuOpen((current) => !current)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
         >
-          {menuOpen ? 'Close' : 'Menu'}
+          <span className="relative block h-4 w-5" aria-hidden="true">
+            <span
+              className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ${
+                menuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 rounded-full bg-current transition-opacity duration-150 ${
+                menuOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <span
+              className={`absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-all duration-200 ${
+                menuOpen ? 'bottom-1/2 translate-y-1/2 -rotate-45' : ''
+              }`}
+            />
+          </span>
         </button>
       </nav>
 
@@ -67,22 +83,26 @@ export default function Navbar() {
             : 'pointer-events-none max-h-0 -translate-y-2 py-0 opacity-0'
         }`}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
           <NavLink
             to="/"
             end
-            className="text-sm font-medium text-neutral-100"
+            className="py-2 text-base font-medium text-neutral-100"
             onClick={() => setMenuOpen(false)}
           >
             Home
           </NavLink>
-          <NavLink to="/projects" className="text-sm font-medium text-neutral-100" onClick={() => setMenuOpen(false)}>
+          <NavLink
+            to="/projects"
+            className="py-2 text-base font-medium text-neutral-100"
+            onClick={() => setMenuOpen(false)}
+          >
             Projects
           </NavLink>
-          <a href={aboutHref} className="text-sm font-medium text-neutral-100" onClick={() => setMenuOpen(false)}>
+          <a href={aboutHref} className="py-2 text-base font-medium text-neutral-100" onClick={() => setMenuOpen(false)}>
             About
           </a>
-          <a href={contactHref} className="text-sm font-medium text-neutral-100" onClick={() => setMenuOpen(false)}>
+          <a href={contactHref} className="py-2 text-base font-medium text-neutral-100" onClick={() => setMenuOpen(false)}>
             Contact
           </a>
         </div>

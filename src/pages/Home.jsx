@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="border-b border-neutral-800">
+      <section className="overflow-hidden border-b border-neutral-800">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <Motion.div
             variants={heroContainer}
@@ -76,12 +76,14 @@ export default function Home() {
             {profile.stats?.length ? (
               <Motion.dl
                 variants={heroItem}
-                className="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-neutral-800 pt-6"
+                className="mt-10 grid grid-cols-3 gap-4 border-t border-neutral-800 pt-6 sm:gap-8"
               >
                 {profile.stats.map((stat) => (
                   <div key={stat.label}>
-                    <dt className="text-xs uppercase tracking-wide text-neutral-500">{stat.label}</dt>
-                    <dd className="mt-1 text-2xl font-semibold text-neutral-100">{stat.value}</dd>
+                    <dt className="text-[11px] uppercase leading-tight tracking-wide text-neutral-500 sm:text-xs">
+                      {stat.label}
+                    </dt>
+                    <dd className="mt-1 text-xl font-semibold text-neutral-100 sm:text-2xl">{stat.value}</dd>
                   </div>
                 ))}
               </Motion.dl>

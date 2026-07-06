@@ -69,7 +69,7 @@ export const focusAreas = [
   {
     title: 'Product Thinking',
     description:
-      'Turning a rough idea into a working system end to end — Thinkright started as a plan on paper, not a template.',
+      'Turning a rough idea into a working system end to end. Thinkright started as a plan on paper, not a template.',
   },
   {
     title: 'Tooling',

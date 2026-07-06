@@ -25,7 +25,7 @@ export default function App() {
       <Navbar />
       <ScrollToTop />
 
-      <div className="flex-1 pt-20">
+      <div className="flex-1 pt-16 sm:pt-20">
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route

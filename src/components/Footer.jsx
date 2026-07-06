@@ -3,7 +3,6 @@ import { profile } from '../data/profile'
 
 export default function Footer() {
   const reduceMotion = useReducedMotion()
-  const year = new Date().getFullYear()
 
   return (
     <footer id="contact" className="border-t border-neutral-800 bg-neutral-950">
@@ -31,9 +30,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-neutral-800 pt-6 text-sm text-neutral-400">
-          <p>
-            {profile.footerNote} · © {year} {profile.name}
-          </p>
+          <p>{profile.footerNote}</p>
         </div>
       </Motion.div>
     </footer>
